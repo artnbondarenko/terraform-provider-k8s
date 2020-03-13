@@ -7,7 +7,7 @@ The k8s Terraform provider enables Terraform to deploy Kubernetes resources. Unl
 Use `go get` to install the provider:
 
 ```
-go get -u github.com/ericchiang/terraform-provider-k8s
+go get -u github.com/gordalina/terraform-provider-k8s
 ```
 
 Register the plugin in `~/.terraformrc`:
