@@ -9,6 +9,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"net/url"
 
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/hashicorp/terraform/plugin"
@@ -208,6 +209,13 @@ func resourceFromSelflink(s string) (resource, namespace string, ok bool) {
 			break
 		}
 	}
+
+	// decode non [a-z] characters
+	resource, err := url.PathUnescape(resource)
+	if err != nil {
+		return resource, namespace, false
+	}
+
 	return resource, namespace, true
 }
 
@@ -291,4 +299,3 @@ func readResource(d *schema.ResourceData, m interface{}, selflink string) error 
 	}
 	return nil
 }
-
